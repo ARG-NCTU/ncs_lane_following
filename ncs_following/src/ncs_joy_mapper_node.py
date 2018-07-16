@@ -36,17 +36,11 @@ class JoyMapper(object):
         # Setup Parameters
         self.v_gain = self.setupParam("~speed_gain", 0.41)
         self.omega_gain = self.setupParam("~steer_gain", 8.3)
-        self.bicycle_kinematics = self.setupParam("~bicycle_kinematics", 0)
-        self.steer_angle_gain = self.setupParam("~steer_angle_gain", 1)
-        self.simulated_vehicle_length = self.setupParam("~simulated_vehicle_length", 0.18)
 
         # Publications
         self.pub_car_cmd = rospy.Publisher("~car_cmd", Twist2DStamped, queue_size=1)
         self.pub_joy_override = rospy.Publisher("~joystick_override", BoolStamped, queue_size=1)
-        self.pub_parallel_autonomy = rospy.Publisher("~parallel_autonomy",BoolStamped, queue_size=1)
-        self.pub_anti_instagram = rospy.Publisher("anti_instagram_node/click",BoolStamped, queue_size=1)
         self.pub_e_stop = rospy.Publisher("wheels_driver_node/emergency_stop",BoolStamped,queue_size=1)
-        self.pub_avoidance = rospy.Publisher("~start_avoidance",BoolStamped,queue_size=1)
 
         # Subscriptions
         self.image_sub = rospy.Subscriber("~image/compressed", CompressedImage, self.img_cb, queue_size=1)
